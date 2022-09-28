@@ -16,7 +16,8 @@
 
 #include "tes.h"
 
-
+extern pid_t tes_ktherad_create(void);
+extern void tes_kthread_destroy(void);
 extern int tes_bus_init(void);
 
 struct tes_device *tesdev;
@@ -117,6 +118,8 @@ static int __init tes_init(void)
 
 	printk("[ ==> start of all: ] register tes_bus_type.. \n");
 
+	tes_ktherad_create();
+
 	tes_bus_init();
 
 
@@ -147,6 +150,7 @@ static void __exit tes_exit(void)
 	bus_unregister(&tes_bus_type);
 //	kfree(tesdrv);						//是否需要显式释放内存？
 //	kfree(tesdrv);
+	tes_kthread_destroy();
 	printk("goodbye tes_exit!\n");
 }
 

@@ -15,5 +15,5 @@ clean:
 # ab-y := a.o b.o
 # obj-m += ab.o
 
-tes_all-y := tes_bus.o tes.o
+tes_all-y := tes_bus.o tes_thread.o tes.o
 obj-m	+= tes_all.o
